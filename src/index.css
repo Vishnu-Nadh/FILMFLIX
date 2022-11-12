@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --color-red: #e50914;
+  --color-black: #141414;
+
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.6px;
+  background-color: var(--color-black);
+}
+
+html::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #141414;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #565656;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+.heading-primary {
+  font-size: 4.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.heading-secondary {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn-primary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 50px;
+  padding: 1.2rem 2.4rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.btn-primary:hover {
+  background-color: hsl(357, 92%, 40%);
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.btn-primary:active {
+  background-color: var(--color-red);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-black);
+  background-color: azure;
+  border: none;
+  border-radius: 50px;
+  padding: 1.2rem 2.4rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.btn-secondary:hover {
+  background-color: #eee;
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.btn-secondary:active {
+  box-shadow: var(--shadow-md);
+  background-color: azure;
+}
+
+

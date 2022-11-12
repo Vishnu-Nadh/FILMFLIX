@@ -1,0 +1,38 @@
+.row {
+}
+
+.row__title {
+  padding: 0 3.2rem;
+  padding-top: 1rem;
+}
+
+.row__items {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-rows: 1fr;
+  gap: 1.6rem;
+  padding: 1.8rem 3.2rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  transition: all 0.45s ease-out;
+}
+
+.row__items:hover {
+  gap: 1.2rem;
+}
+
+.row__items::-webkit-scrollbar {
+  /* display: none; */
+  /* width: 2px; */
+  height: 8px;
+}
+
+.row__items::-webkit-scrollbar-track {
+  background-color: var(--color-black);
+}
+
+.row__items::-webkit-scrollbar-thumb {
+  background-color: #333;
+  height: 8px;
+  border-radius: 50px;
+}

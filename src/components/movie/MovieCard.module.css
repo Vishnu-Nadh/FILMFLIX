@@ -1,0 +1,15 @@
+.card {
+  box-shadow: var(--shadow-lg);
+}
+
+.card__image {
+  width: 20rem;
+  border-radius: 10px;
+  transition: all 0.45s ease-out;
+  opacity: 0.9;
+}
+
+.card__image:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}
