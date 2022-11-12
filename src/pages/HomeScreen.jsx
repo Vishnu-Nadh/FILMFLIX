@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./HomeScreen.module.css";
-import NavBar from "../components/NavBar";
-import Banner from "../components/Banner";
-import Row from "../components/Row";
+import NavBar from "../components/layout/NavBar";
+import Banner from "../components/home/Banner";
+import Row from "../components/home/Row";
 import requests from "../http/requests";
 
 const HomeScreen = () => {
   return (
     <main>
-      <NavBar />
+      {/* <NavBar /> */}
       <Banner />
       <Row
         title="NETFLIX ORIGINALS"

@@ -4,7 +4,7 @@ import styles from "./MovieCard.module.css";
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
 const MovieCard = ({ movie, isLarge = false }) => {
-  console.log(movie);
+  // console.log(movie);
   const imageName = isLarge ? movie.poster_path : movie.backdrop_path;
   if (!imageName) return;
   return (

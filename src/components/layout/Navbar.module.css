@@ -17,14 +17,30 @@
   align-items: center;
 }
 
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
 .nav__logo {
   width: 12rem;
   cursor: pointer;
 }
 
-.nav__avatar {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 10px;
+.nav__avatar,
+.nav__avatar:link {
+  /* height: 100%; */
+  font-size: 2.8rem;
+  display: flex;
+  align-items: center;
+  color: var(--color-red);
   cursor: pointer;
+  transition: all .4s ease-out;
+}
+
+.nav__avatar:hover,
+.nav__avatar:active {
+  color: hsl(357, 92%, 40%);
 }

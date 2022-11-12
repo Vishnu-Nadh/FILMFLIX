@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Row.module.css";
 import { useState, useEffect } from "react";
-import axios from "../http/axios";
-import MovieCard from "./movie/MovieCard";
+import axios from "../../http/axios";
+import MovieCard from "../movie/MovieCard";
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [movies, setMovies] = useState([]);

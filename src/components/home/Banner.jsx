@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Banner.module.css";
 import { useState, useEffect } from "react";
-import axios from "../http/axios";
-import requests from "../http/requests";
+import axios from "../../http/axios";
+import requests from "../../http/requests";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
