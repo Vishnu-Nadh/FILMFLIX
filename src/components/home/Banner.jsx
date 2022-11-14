@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import axios from "../../http/axios";
 import requests from "../../http/requests";
 
-const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
+const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
 const Banner = () => {
-  const [bannerMovie, setBannerMovie] = useState([]);
-  console.log(bannerMovie);
+  const [bannerMovie, setBannerMovie] = useState({});
+
   useEffect(() => {
     const fetchNetflixOriginals = async () => {
       const request = await axios.get(requests.fetchNetflixOriginals);
@@ -27,13 +27,18 @@ const Banner = () => {
       ? text.substring(0, numChars - 1) + "..."
       : text;
   };
+
+  const bannerUrl = bannerMovie.backdrop_path
+    ? imageBaseUrl + bannerMovie.backdrop_path
+    : "";
+    
   return (
     <header
       className={styles.banner}
       style={{
         backgroundImage: `linear-gradient(90deg, rgba(20,20,20,1) 0%, rgba(20,20,20,.8) 30% ,rgba(20,20,20,0) 50%),
         linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,.8) 15%), 
-        url("${imageBaseUrl}${bannerMovie?.backdrop_path}")`,
+        url(${bannerUrl})`,
         backgroundSize: "cover",
       }}
     >

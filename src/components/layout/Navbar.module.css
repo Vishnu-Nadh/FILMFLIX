@@ -22,6 +22,57 @@
   align-items: center;
   justify-content: center;
   gap: 1.6rem;
+  position: relative;
+}
+
+.nav__profile_links {
+  position: absolute;
+  width: 15rem;
+  top: 100%;
+  right: 0;
+  transform: translateX(20%);
+  padding: 2rem 0;
+  /* padding-right: 3rem; */
+  display: flex;
+  flex-direction: column;
+  /* gap: 1.6rem; */
+  align-items: center;
+  background-color: rgba(20, 20, 20, 0.6);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.1),
+    rgba(20, 20, 20, 0.8)
+  );
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in;
+}
+
+.nav__avatar:hover + .nav__profile_links,
+.nav__profile_links:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav__profile_links a:link,
+.nav__profile_links a:visited {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  width: 100%;
+  padding: 1.6rem;
+  text-align: center;
+}
+
+.nav__profile_links a:hover,
+.nav__profile_links a:active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav__profile_links button {
+  margin-top: 1.6rem;
 }
 
 .nav__logo {
@@ -37,7 +88,8 @@
   align-items: center;
   color: var(--color-red);
   cursor: pointer;
-  transition: all .4s ease-out;
+  transition: all 0.4s ease-out;
+  padding: 1rem 0;
 }
 
 .nav__avatar:hover,

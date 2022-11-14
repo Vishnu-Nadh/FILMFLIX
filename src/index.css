@@ -2,6 +2,7 @@
 
 :root {
   --color-red: #e50914;
+  --color-red-dark: #c40812;
   --color-black: #141414;
 
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -78,7 +79,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: hsl(357, 92%, 40%);
+  background-color: var(--color-red-dark);
   box-shadow: var(--shadow-lg);
   transform: scale(1.05);
   opacity: 1;
@@ -133,7 +134,7 @@ body {
 }
 
 .btn-nav:hover {
-  background-color: hsl(357, 92%, 40%);
+  background-color: var(--color-red-dark);
   box-shadow: var(--shadow-lg);
   transform: scale(1.04);
   opacity: 1;
@@ -173,7 +174,7 @@ body {
 }
 
 .input-btn:hover {
-  background-color: hsl(357, 92%, 40%);
+  background-color: var(--color-red-dark);
 }
 
 .auth-bg {
@@ -191,4 +192,6 @@ body {
     ),
     linear-gradient(to bottom, rgba(20, 20, 20, 0.7), rgba(20, 20, 20, 0.1)),
     url(https://assets.nflxext.com/ffe/siteui/vlv3/0ef67cc5-0aa7-47cf-87bd-7f595afc7cfb/c96f2a1d-1627-40aa-a29e-6ab6b27b35ab/IN-en-20221107-popsignuptwoweeks-perspective_alpha_website_small.jpg);
+  object-fit: contain;
+  background-size: cover;
 }

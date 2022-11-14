@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../store/user-slice";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 const NavBar = () => {
-  const isAuthenticated = false;
   const [showNav, setShowNav] = useState(false);
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const transitionNavBar = () => {
     if (window.scrollY >= 100) {
       setShowNav(true);
@@ -23,27 +30,55 @@ const NavBar = () => {
     };
   }, []);
 
+  const logoutHandler = () => {
+    signOut(auth);
+    dispatch(logout());
+    navigate("/welcome");
+  };
+
   const navClasses = [styles.nav, showNav && styles.nav__black];
   return (
     <nav className={navClasses.join(" ")}>
       <div className={styles.nav__contents}>
-        <img src={logo} alt="logo" className={styles.nav__logo} />
+        <NavLink to={user ? "/" : "/welcome"}>
+          <img src={logo} alt="logo" className={styles.nav__logo} />
+        </NavLink>
         <div className={styles.nav__links}>
-          {isAuthenticated && (
+          {user && (
             <>
-              <NavLink to="">
-                <button className="btn-nav">Logout</button>
+              <NavLink className={styles.nav__avatar}>
+                <FiUser />
               </NavLink>
+              <div className={styles.nav__profile_links}>
+                <Link to="">WatchList</Link>
+                <Link to="/account">My Account</Link>
+                <button className="btn-nav" onClick={logoutHandler}>
+                  Logout
+                </button>
+              </div>
+            </>
+          )}
+          {!user && (
+            <NavLink to="/auth" state={{ isSignIn: true }}>
+              <button className="btn-nav">Login</button>
+            </NavLink>
+          )}
+
+          {/* {user && (
+            <>
+              <button className="btn-nav" onClick={logoutHandler}>
+                Logout
+              </button>
               <NavLink className={styles.nav__avatar}>
                 <FiUser />
               </NavLink>
             </>
           )}
-          {!isAuthenticated && (
-            <NavLink to="/login">
+          {!user && (
+            <NavLink to="/auth" state={{ isSignIn: true }}>
               <button className="btn-nav">Login</button>
             </NavLink>
-          )}
+          )} */}
         </div>
       </div>
     </nav>

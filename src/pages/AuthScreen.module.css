@@ -1,0 +1,79 @@
+.login {
+}
+
+.login__form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.6rem;
+  flex-direction: column;
+  padding: 6rem;
+  max-width: 50rem;
+  min-width: 36rem;
+  background-color: rgba(20, 20, 20, 0.8);
+  color: var(--color-black);
+}
+
+.login__title {
+  text-align: start;
+  font-size: 2.8rem;
+  color: #eee;
+}
+
+.login__btn {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #fff;
+  border-radius: 5px;
+  background-color: var(--color-red);
+  border: none;
+  outline: none;
+  box-shadow: var(--shadow-lg);
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.login__btn:hover,
+.login__btn:active {
+  background-color: var(--color-red);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  outline: none;
+  padding: 1rem 2rem;
+  font-family: inherit;
+  border-radius: 5px;
+  border: none;
+  background-color: #444;
+  color: #fff;
+}
+
+.login__links {
+  color: #aaa;
+}
+
+.login__link a:link,
+.login__link a:visited {
+  color: #eee;
+  margin-left: 1.6rem;
+  text-decoration: underline;
+  transition: all 0.3s ease-in;
+}
+
+.login__link a:hover,
+.login__link a:active {
+  color: #fff;
+}
