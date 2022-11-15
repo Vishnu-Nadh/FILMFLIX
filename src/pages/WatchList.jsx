@@ -8,7 +8,7 @@ const WatchList = () => {
   return (
     <section className={styles.watchlist}>
       {movieList.map((movie) => (
-        <MovieCard movie={movie} id={movie.id}/>
+        <MovieCard movie={movie} key={movie.id}/>
       ))}
     </section>
   );

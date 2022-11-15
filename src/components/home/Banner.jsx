@@ -1,14 +1,19 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Banner.module.css";
 import requests from "../../http/requests";
 import { useSelector, useDispatch } from "react-redux";
 import { BsPlusLg, BsCheckLg } from "react-icons/bs";
 import { useTmdb } from "../../hooks/use-http";
+import { movieActions } from "../../store/movie-slice";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
 const Banner = () => {
-  const [isWatchListed, setIsWatchListed] = useState(false);
+  const movieList = useSelector((state) => state.movie.movieList);
+  const dispatch = useDispatch();
+  const currentBannerMovie = useSelector(
+    (state) => state.movie.currentBannerMovie
+  );
   const {
     data: bannerMovie,
     isLoading,
@@ -21,15 +26,17 @@ const Banner = () => {
         Math.floor(Math.random() * (request.data.results.length - 1))
       ]
   );
-  const currentBannerMovie = useSelector(
-    (state) => state.movie.currentBannerMovie
-  );
-
-  const addToWatchListHandler = () => {
-    setIsWatchListed((prevState) => !prevState);
-  };
-
   const displayMovie = currentBannerMovie ? currentBannerMovie : bannerMovie;
+  const isWatchListed = movieList.find(movie => movie.id === displayMovie.id)
+
+ 
+  const WatchListHandler = () => {
+    if (isWatchListed) {
+      dispatch(movieActions.removeFromMovieList(displayMovie));
+    } else {
+      dispatch(movieActions.addToMovieList(displayMovie));
+    }
+  };
 
   const truncateText = (text, numChars) => {
     return text.length > numChars
@@ -59,7 +66,7 @@ const Banner = () => {
         </h1>
         <div className={styles.banner__btns}>
           <button className="btn-primary">Play</button>
-          <button className="btn-secondary" onClick={addToWatchListHandler}>
+          <button className="btn-secondary" onClick={WatchListHandler}>
             {isWatchListed && <BsCheckLg className={styles.banner__btn_icon} />}
             {!isWatchListed && <BsPlusLg className={styles.banner__btn_icon} />}
             <span>Watch List</span>

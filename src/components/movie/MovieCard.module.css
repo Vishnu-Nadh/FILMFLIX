@@ -1,9 +1,15 @@
 .card {
   box-shadow: var(--shadow-lg);
+  width: 25rem;
+}
+
+.card__lg {
+  width: 20rem;
 }
 
 .card__image {
-  width: 20rem;
+  /* width: 20rem; */
+  width: 100%;
   border-radius: 10px;
   transition: all 0.45s ease-out;
   opacity: 0.9;
