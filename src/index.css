@@ -4,6 +4,17 @@
   --color-red: #e50914;
   --color-red-dark: #c40812;
   --color-black: #141414;
+  --gradient-bg: linear-gradient(
+    180deg,
+    rgba(20, 20, 20, 0.20) 0%,
+    rgba(229, 9, 20, 0.20) 100%
+  );
+  --gradient-bg-dark: linear-gradient(
+    180deg,
+    rgba(20, 20, 20, 0.40) 0%,
+    rgba(229, 9, 20, 0.40) 100%
+  );
+  
 
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
@@ -103,6 +114,10 @@ body {
   cursor: pointer;
   letter-spacing: 1px;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1px;
 }
 
 .btn-secondary:hover {

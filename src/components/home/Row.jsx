@@ -1,19 +1,10 @@
 import React from "react";
 import styles from "./Row.module.css";
-import { useState, useEffect } from "react";
-import axios from "../../http/axios";
 import MovieCard from "../movie/MovieCard";
+import { useTmdb } from "../../hooks/use-http";
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
-      return request;
-    };
-    fetchMovies();
-  }, []);
+  const { data: movies, isLoading, error } = useTmdb(fetchUrl, []);
 
   return (
     <section className={styles.row}>

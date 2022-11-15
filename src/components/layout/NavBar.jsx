@@ -50,7 +50,7 @@ const NavBar = () => {
                 <FiUser />
               </NavLink>
               <div className={styles.nav__profile_links}>
-                <Link to="">WatchList</Link>
+                <Link to="/watchlist">WatchList</Link>
                 <Link to="/account">My Account</Link>
                 <button className="btn-nav" onClick={logoutHandler}>
                   Logout
@@ -63,22 +63,6 @@ const NavBar = () => {
               <button className="btn-nav">Login</button>
             </NavLink>
           )}
-
-          {/* {user && (
-            <>
-              <button className="btn-nav" onClick={logoutHandler}>
-                Logout
-              </button>
-              <NavLink className={styles.nav__avatar}>
-                <FiUser />
-              </NavLink>
-            </>
-          )}
-          {!user && (
-            <NavLink to="/auth" state={{ isSignIn: true }}>
-              <button className="btn-nav">Login</button>
-            </NavLink>
-          )} */}
         </div>
       </div>
     </nav>

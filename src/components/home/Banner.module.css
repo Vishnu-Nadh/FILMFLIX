@@ -32,3 +32,8 @@
   font-weight: 400;
   color: rgba(255, 255, 255, 0.949);
 }
+
+.banner__btn_icon {
+  width: 2rem;
+  color: var(--color-red);
+}

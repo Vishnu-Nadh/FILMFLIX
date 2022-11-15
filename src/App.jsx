@@ -1,11 +1,14 @@
-import HomeScreen from "./pages/HomeScreen";
 import { Route, Routes } from "react-router-dom";
-import AuthScreen from "./pages/AuthScreen";
 import Layout from "./components/layout/Layout";
-import Welcome from "./pages/Welcome";
-import NotFound from "./pages/NotFound";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
-import Account from "./pages/Account";
+import {
+  WatchList,
+  HomeScreen,
+  Account,
+  Welcome,
+  AuthScreen,
+  NotFound,
+} from "./pages";
 
 function App() {
   return (
@@ -14,6 +17,7 @@ function App() {
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/watchlist" element={<WatchList />} />
         </Route>
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/auth" element={<AuthScreen />} />

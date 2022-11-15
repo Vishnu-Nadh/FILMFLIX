@@ -1,0 +1,44 @@
+.account {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account__section {
+  padding: 2rem;
+  margin: 10rem auto;
+  width: 90%;
+}
+
+.account__header {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.profile__icon {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-red);
+  padding: 1rem;
+  color: var(--color-red);
+}
+
+.account__plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 25rem));
+  justify-content: center;
+  row-gap: 4rem;
+  column-gap: 2.4rem;
+  text-transform: capitalize;
+}
+
+.account__plan_titles {
+  display: grid;
+  grid-auto-flow: row;
+}
