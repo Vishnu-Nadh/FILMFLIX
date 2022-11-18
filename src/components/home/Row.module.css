@@ -18,7 +18,7 @@
 }
 
 .row__items:hover {
-  gap: 1.2rem;
+  transform: scale(1.03);
 }
 
 .row__items::-webkit-scrollbar {

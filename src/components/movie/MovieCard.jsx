@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
 import { useDispatch } from "react-redux";
-import { movieActions } from "../../store/movie-slice";
+// import { movieActions } from "../../store/movie-slice/movie-slice";
 import { useNavigate } from "react-router-dom";
+import { truncateText } from "../../utils/utils";
+import { setBannerMovie } from "../../store/movie-slice/movie-actions";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -13,8 +15,9 @@ const MovieCard = ({ movie, isLarge = false }) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
   const setBannerHandler = () => {
-    dispatch(movieActions.setBannerMovie(movie));
+    dispatch(setBannerMovie(movie.id));
     navigate("/");
   };
 
@@ -30,7 +33,14 @@ const MovieCard = ({ movie, isLarge = false }) => {
         alt={movie.title}
         className={styles.card__image}
       />
-      <div className={styles.card__content}></div>
+      <div className={styles.card__content}>
+        <h4>{movie?.title || movie?.name || movie?.original_name}</h4>
+        <p>
+          {isLarge
+            ? truncateText(movie?.overview || "", 80)
+            : truncateText(movie?.overview || "", 50)}
+        </p>
+      </div>
     </figure>
   );
 };

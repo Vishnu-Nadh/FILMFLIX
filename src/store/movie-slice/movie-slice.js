@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialMovieState = {
-  currentBannerMovie: null,
   movieList: [],
+  isMovieActionLoading: false,
+  MovieActionError: null,
+  currentBannerMovie: null,
+  isBannerLoading: false,
+  BannerError: null,
 };
 
 const MovieSlice = createSlice({
@@ -11,6 +15,10 @@ const MovieSlice = createSlice({
   reducers: {
     setBannerMovie: (state, action) => {
       state.currentBannerMovie = action.payload;
+    },
+
+    setInitialMovieData: (state, action) => {
+      state.movieList = action.payload;
     },
     addToMovieList: (state, action) => {
       const movie = state.movieList.find(
@@ -24,8 +32,21 @@ const MovieSlice = createSlice({
         (movie) => movie.id !== action.payload.id
       );
     },
+    setMovieLoading: (state, action) => {
+      state.isMovieActionLoading = action.payload;
+    },
+    setMovieError: (state, action) => {
+      state.MovieActionError = action.payload;
+    },
+    setBannerLoading: (state, action) => {
+      state.isBannerLoading = action.payload;
+    },
+    setBannerError: (state, action) => {
+      state.BannerError = action.payload;
+    },
   },
 });
+
 
 export const movieActions = MovieSlice.actions;
 export default MovieSlice.reducer;

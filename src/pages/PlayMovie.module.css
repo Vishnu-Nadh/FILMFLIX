@@ -1,0 +1,22 @@
+.play {
+  padding-top: 10rem;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.play__youtube {
+  position: relative;
+  overflow: hidden;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 56.25%;
+  border-radius: 15px;
+}
+
+.play__youtube iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
