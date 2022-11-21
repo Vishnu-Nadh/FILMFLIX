@@ -6,7 +6,12 @@ import {
   addMovieToList,
   removeMovieFromList,
 } from "../../store/movie-slice/movie-actions";
-import { truncateText, getGenres, minutesToHours } from "../../utils/utils";
+import {
+  truncateText,
+  getGenres,
+  minutesToHours,
+  getYear,
+} from "../../utils/utils";
 import { useTmdbInit } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 
@@ -43,13 +48,21 @@ const Banner = () => {
 
   const playMovieHandler = () => {
     navigate(`/watch/${displayMovie.id}`, {
-      state: { videos: displayMovie?.videos?.results },
+      state: {
+        key: displayMovie?.videos?.results.find(
+          (item) => item.type === "Trailer"
+        ).key,
+      },
     });
   };
 
   const bannerUrl = displayMovie?.backdrop_path
     ? imageBaseUrl + displayMovie?.backdrop_path
     : "";
+
+  const runtime = displayMovie?.runtime;
+  const year = displayMovie?.release_date?.split("-")[0];
+  const genres = displayMovie?.genres;
 
   return (
     <header
@@ -68,9 +81,9 @@ const Banner = () => {
             displayMovie?.original_name}
         </h1>
         <div className={styles.banner__info}>
-          <span>{minutesToHours(displayMovie?.runtime)} .</span>
-          <span>{displayMovie?.release_date?.split("-")[0]} .</span>
-          <span>{getGenres(displayMovie?.genres)}</span>
+          {runtime && <span>{minutesToHours(runtime)} .</span>}
+          {year && <span>{year} .</span>}
+          {genres && <span>{getGenres(genres)}</span>}
         </div>
         <p className={styles.banner__description}>
           {truncateText(`${displayMovie?.overview || ""}`, 150)}

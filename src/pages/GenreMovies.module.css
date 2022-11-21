@@ -1,0 +1,19 @@
+.movies {
+  padding-top: 8rem;
+}
+
+.movies h2 {
+  text-align: center;
+  padding: 1.6rem 0;
+  width: 100%;
+}
+
+.movies__items {
+  width: 95%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 25rem));
+  gap: 2rem;
+  justify-content: center;
+  margin: 0 auto;
+}

@@ -17,7 +17,12 @@ const httpReducer = (state, action) => {
   }
 };
 
-export const useTmdb = (url, initialValue, selectDataFn = selectData) => {
+export const useTmdb = (
+  url,
+  initialValue,
+  selectDataFn = selectData,
+  onDataChange = false,
+) => {
   const initailHttpState = {
     data: initialValue,
     isLoading: false,
@@ -39,7 +44,7 @@ export const useTmdb = (url, initialValue, selectDataFn = selectData) => {
       }
     };
     fetchData();
-  }, []);
+  }, [onDataChange ? initailHttpState.data : null]);
 
   return {
     data: httpState.data,
@@ -69,7 +74,7 @@ export const useTmdbInit = () => {
         const movieInfoResponse = await axios.get(
           requests.fetchMovieDetails(randomMovie.id)
         );
-        
+
         dispatch({ type: "FETCH_SUCCUSS", data: movieInfoResponse.data });
       } catch (error) {
         const errorMessage = error.response?.data?.status_message;

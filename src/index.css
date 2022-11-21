@@ -6,19 +6,22 @@
   --color-black: #141414;
   --gradient-bg: linear-gradient(
     180deg,
-    rgba(20, 20, 20, 0.20) 0%,
-    rgba(229, 9, 20, 0.20) 100%
+    rgba(20, 20, 20, 0.2) 0%,
+    rgba(229, 9, 20, 0.2) 100%
   );
   --gradient-bg-dark: linear-gradient(
     180deg,
-    rgba(20, 20, 20, 0.40) 0%,
-    rgba(229, 9, 20, 0.40) 100%
+    rgba(20, 20, 20, 0.4) 0%,
+    rgba(229, 9, 20, 0.4) 100%
   );
-  
 
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+main {
+  margin-bottom: 3rem;
 }
 
 *,
@@ -89,6 +92,23 @@ body {
   text-decoration: none;
 }
 
+.btn-primary-sm {
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--color-red);
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.8rem 1.2rem;
+}
+
+.btn-primary-sm:hover,
 .btn-primary:hover {
   background-color: var(--color-red-dark);
   box-shadow: var(--shadow-lg);
@@ -96,6 +116,7 @@ body {
   opacity: 1;
 }
 
+.btn-primary-sm:active,
 .btn-primary:active {
   background-color: var(--color-red);
   box-shadow: var(--shadow-md);
@@ -120,6 +141,26 @@ body {
   line-height: 1px;
 }
 
+.btn-secondary-sm {
+  font-weight: 700;
+  color: var(--color-black);
+  background-color: azure;
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* line-height: 1px; */
+  font-size: 1.2rem;
+  padding: 0.8rem 1.2rem;
+}
+
+.btn-secondary-sm:hover,
 .btn-secondary:hover {
   background-color: #eee;
   box-shadow: var(--shadow-lg);
@@ -127,6 +168,7 @@ body {
   opacity: 1;
 }
 
+.btn-secondary-sm:active,
 .btn-secondary:active {
   box-shadow: var(--shadow-md);
   background-color: azure;

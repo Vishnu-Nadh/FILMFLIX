@@ -88,7 +88,7 @@ export const setBannerMovie = (id) => {
       dispatch(movieActions.setBannerMovie(movie));
       dispatch(movieActions.setBannerLoading(false));
     } catch (error) {
-      console.error(error)
+      console.error(error);
       dispatch(
         movieActions.setBannerError(error.response?.data?.status_message)
       );

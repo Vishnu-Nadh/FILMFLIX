@@ -5,7 +5,13 @@ export const truncateText = (text, numChars) => {
 };
 
 export const getGenres = (array) => {
-  return array?.map((item, i) => (i <= 1 ? item.name : "")).join(", ");
+  if (array) {
+    return array[0].name + ", " + array[1].name;
+  }
+};
+
+export const getYear = (movie) => {
+  return movie?.release_date?.split("-")[0] + " .";
 };
 
 export const minutesToHours = (minutes) => {

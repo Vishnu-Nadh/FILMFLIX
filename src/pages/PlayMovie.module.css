@@ -7,10 +7,10 @@
 .play__youtube {
   position: relative;
   overflow: hidden;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding-top: 56.25%;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 .play__youtube iframe {

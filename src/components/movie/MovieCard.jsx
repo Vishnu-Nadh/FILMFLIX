@@ -1,10 +1,15 @@
 import React from "react";
 import styles from "./MovieCard.module.css";
 import { useDispatch } from "react-redux";
-// import { movieActions } from "../../store/movie-slice/movie-slice";
 import { useNavigate } from "react-router-dom";
 import { truncateText } from "../../utils/utils";
 import { setBannerMovie } from "../../store/movie-slice/movie-actions";
+import { BsCheckLg, BsPlusLg } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import {
+  addMovieToList,
+  removeMovieFromList,
+} from "../../store/movie-slice/movie-actions";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -15,10 +20,27 @@ const MovieCard = ({ movie, isLarge = false }) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const { movieList } = useSelector((state) => state.movie);
+
+  const isWatchListed = movieList.find((item) => item.id === movie.id);
 
   const setBannerHandler = () => {
     dispatch(setBannerMovie(movie.id));
     navigate("/");
+  };
+
+  const playMovieHandler = (event) => {
+    event.stopPropagation();
+    navigate(`/watch/${movie.id}`);
+  };
+
+  const watchListHandler = (event) => {
+    event.stopPropagation();
+    if (isWatchListed) {
+      dispatch(removeMovieFromList(movie));
+    } else {
+      dispatch(addMovieToList(movie));
+    }
   };
 
   return (
@@ -40,6 +62,16 @@ const MovieCard = ({ movie, isLarge = false }) => {
             ? truncateText(movie?.overview || "", 80)
             : truncateText(movie?.overview || "", 50)}
         </p>
+        <div className={styles.card__btns}>
+          <button className="btn-primary-sm" onClick={playMovieHandler}>
+            Play
+          </button>
+          <button className="btn-secondary-sm" onClick={watchListHandler}>
+            {isWatchListed && <BsCheckLg className={styles.card__btn_icon} />}
+            {!isWatchListed && <BsPlusLg className={styles.card__btn_icon} />}
+            <span>My List</span>
+          </button>
+        </div>
       </div>
     </figure>
   );

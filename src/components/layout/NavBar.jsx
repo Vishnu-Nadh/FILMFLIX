@@ -8,6 +8,8 @@ import { logout } from "../../store/user-slice";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import MovieFilter from "../movie/MovieFilter";
+
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -43,6 +45,7 @@ const NavBar = () => {
         <NavLink to={user ? "/" : "/welcome"}>
           <img src={logo} alt="logo" className={styles.nav__logo} />
         </NavLink>
+        <MovieFilter />
         <div className={styles.nav__links}>
           {user && (
             <>

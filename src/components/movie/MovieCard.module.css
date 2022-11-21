@@ -44,9 +44,9 @@
   justify-content: flex-end;
   background-image: linear-gradient(
     to top,
-    rgba(20, 20, 20, 0.9) 0%,
-    rgba(20, 20, 20, 0.5) 40%,
-    rgba(20, 20, 20, 0) 60%
+    rgba(20, 20, 20, 0.95) 0%,
+    rgba(20, 20, 20, 0.5) 65%,
+    rgba(20, 20, 20, 0) 85%
   );
   padding: 1.6rem;
   transition: all 0.4s ease-out;
@@ -62,3 +62,13 @@
   line-height: 1.2;
   margin-bottom: 1rem;
 }
+
+.card__btns {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+

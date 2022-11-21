@@ -1,0 +1,68 @@
+.filter {
+  position: relative;
+}
+
+.filter__icon {
+  font-size: 3rem;
+  color: var(--color-red);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.filter:hover > .filter__results {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filter__results:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.filter__results {
+  opacity: 0;
+  visibility: hidden;
+
+  position: absolute;
+  top: 100%;
+  /* left: 50%; */
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  width: 100vw;
+  padding: 2rem;
+  /* row-gap: 5px;
+  column-gap: 1.6rem; */
+  align-items: center;
+  background-color: rgba(20, 20, 20, 0.6);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.4),
+    rgba(20, 20, 20, 0.9)
+  );
+  border-radius: 5px;
+  backdrop-filter: blur(5px);
+
+  transition: all 0.4s ease-out;
+}
+
+.filter__genre:link,
+.filter__genre:visited {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-align: center;
+  padding: 1rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.filter__genre:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

@@ -13,6 +13,7 @@ import {
   AuthScreen,
   NotFound,
   PlayMovie,
+  GenreMovies,
 } from "./pages";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/watchlist" element={<WatchList />} />
           <Route path="/watch/:id" element={<PlayMovie />} />
+          <Route path="/genre/:id" element={<GenreMovies />} />
         </Route>
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/auth" element={<AuthScreen />} />
