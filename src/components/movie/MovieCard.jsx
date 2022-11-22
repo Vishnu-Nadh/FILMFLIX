@@ -13,7 +13,7 @@ import {
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
-const MovieCard = ({ movie, isLarge = false }) => {
+const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
   // console.log(movie);
   const imageName = isLarge ? movie.poster_path : movie.backdrop_path;
   if (!imageName) return;
@@ -51,6 +51,7 @@ const MovieCard = ({ movie, isLarge = false }) => {
       onClick={setBannerHandler}
     >
       <img
+        ref={ref}
         src={`${imageBaseUrl}${imageName}`}
         alt={movie.title}
         className={styles.card__image}
@@ -75,6 +76,6 @@ const MovieCard = ({ movie, isLarge = false }) => {
       </div>
     </figure>
   );
-};
+});
 
 export default MovieCard;

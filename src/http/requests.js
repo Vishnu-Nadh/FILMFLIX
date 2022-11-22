@@ -15,8 +15,8 @@ const requests = {
   fetchMovieDetails: (movieId) => {
     return `/movie/${movieId}?api_key=${APIKEY}&language=en-US&append_to_response=videos`;
   },
-  fetchMoviesWithGenre: (genreId) => {
-    return `/discover/movie?api_key=${APIKEY}&with_genres=${genreId}`;
+  fetchMoviesWithGenre: (genreId, pageNo) => {
+    return `/discover/movie?api_key=${APIKEY}&with_genres=${genreId}&page=${pageNo}`;
   },
 };
 

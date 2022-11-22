@@ -1,5 +1,5 @@
 import axios from "../http/axios";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import requests from "../http/requests";
 
 const selectData = (response) => response.data.results;
@@ -21,12 +21,12 @@ export const useTmdb = (
   url,
   initialValue,
   selectDataFn = selectData,
-  onDataChange = false,
+  onDataChange = false
 ) => {
   const initailHttpState = {
     data: initialValue,
     isLoading: false,
-    error: false,
+    error: null,
   };
 
   const [httpState, dispatch] = useReducer(httpReducer, initailHttpState);
@@ -57,7 +57,7 @@ export const useTmdbInit = () => {
   const initailBannerState = {
     data: {},
     isLoading: false,
-    error: false,
+    error: null,
   };
 
   const [bannerState, dispatch] = useReducer(httpReducer, initailBannerState);
@@ -88,5 +88,48 @@ export const useTmdbInit = () => {
     data: bannerState.data,
     isLoading: bannerState.isLoading,
     error: bannerState.error,
+  };
+};
+
+export const useTmdbInfinite = (
+  genreId,
+  pageNumber,
+  initialValue,
+  selectDataFn = selectData
+) => {
+  const [movies, setMovies] = useState(initialValue);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(false);
+
+  const url = requests.fetchMoviesWithGenre(genreId, pageNumber);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await axios.get(url);
+        const movies = selectDataFn(response);
+
+        setMovies((prevMovies) => {
+          return [...new Set([...prevMovies, ...movies])];
+        });
+        setHasMore(movies.length > 0);
+        setIsLoading(false);
+      } catch (error) {
+        const errorMessage = error.response?.data?.status_message;
+        setError(errorMessage);
+        setIsLoading(false);
+      }
+    };
+    fetchMovies();
+  }, [genreId, pageNumber]);
+  return {
+    movies,
+    setMovies,
+    isLoading,
+    error,
+    hasMore,
   };
 };

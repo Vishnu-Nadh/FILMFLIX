@@ -1,27 +1,58 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import MovieCard from "../components/movie/MovieCard";
-import { useTmdb } from "../hooks/use-http";
+import { useTmdb, useTmdbInfinite } from "../hooks/use-http";
 import styles from "./GenreMovies.module.css";
 import requests from "../http/requests";
 
 const GenreMovies = () => {
   const location = useLocation();
+  const [pageNumber, setPageNumber] = useState(1);
   const { name: genreName, id } = location.state;
-  const { data, isLoading, error } = useTmdb(
-    requests.fetchMoviesWithGenre(id),
-    [],
-    (response) => response.data.results,
-    true
+  const { movies, setMovies, isLoading, error, hasMore } = useTmdbInfinite(
+    id,
+    pageNumber,
+    []
   );
-  console.log(data);
+  const observer = useRef();
+  const lastElementRef = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        const imgLoaded = node.complete && node.naturalHeight !== 0;
+        console.log(imgLoaded);
+        if (imgLoaded && entries[0].isIntersecting && hasMore)
+          setPageNumber((prevPage) => prevPage + 1);
+      });
+      if (node) observer.current.observe(node);
+      console.log(node);
+    },
+    [isLoading, hasMore]
+  );
+  console.log(movies);
+  useEffect(() => {
+    setMovies([]);
+    setPageNumber(1);
+  }, [id]);
+
   return (
     <div className={styles.movies}>
       <h2 className="heading-secondary">{genreName} Movies</h2>
       <section className={styles.movies__items}>
-        {data.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+        {movies.map((movie, index) => {
+          if (movies.length === index + 1) {
+            return (
+              // <div ref={lastElementRef}>
+              <MovieCard key={movie.id} movie={movie} ref={lastElementRef} />
+              // </div>
+            );
+          } else {
+            return <MovieCard key={movie.id} movie={movie} />;
+          }
+        })}
+        {isLoading && <h2>Loading...</h2>}
+        {error && <h2>Error! {error}</h2>}
       </section>
     </div>
   );
