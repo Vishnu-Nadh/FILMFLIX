@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./MovieCard.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import {
   addMovieToList,
   removeMovieFromList,
 } from "../../store/movie-slice/movie-actions";
+import CardSkeleton from "../loaders/CardSkeleton";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -17,11 +18,11 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
   // console.log(movie);
   const imageName = isLarge ? movie.poster_path : movie.backdrop_path;
   if (!imageName) return;
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { movieList } = useSelector((state) => state.movie);
-
+  const imgRef = useRef();
   const isWatchListed = movieList.find((item) => item.id === movie.id);
 
   const setBannerHandler = () => {
@@ -45,13 +46,14 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
 
   return (
     <figure
+      ref={ref}
       className={
         isLarge ? `${styles.card} ${styles.card__lg}` : `${styles.card}`
       }
       onClick={setBannerHandler}
     >
       <img
-        ref={ref}
+        ref={imgRef}
         src={`${imageBaseUrl}${imageName}`}
         alt={movie.title}
         className={styles.card__image}

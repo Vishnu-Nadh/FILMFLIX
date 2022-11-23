@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import styles from "./PlayMovie.module.css";
 import { useParams, useLocation } from "react-router-dom";
 import Youtube from "react-youtube";
 import axios from "../http/axios";
 import requests from "../http/requests";
+import PlaySkeleton from "../components/loaders/PlaySkeleton";
 
 const initialKeyState = {
   youtubeKey: "",
@@ -20,7 +21,6 @@ const httpReducer = (state, action) => {
         keyError: null,
       };
     case "SUCCESS":
-      console.log(action.key);
       return {
         youtubeKey: action.key,
         isKeyLoading: false,
@@ -41,6 +41,7 @@ const PlayMovie = () => {
   const { id } = useParams();
   const location = useLocation();
   const [keyState, dispatch] = useReducer(httpReducer, initialKeyState);
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
 
   useEffect(() => {
     if (location.state?.key) {
@@ -63,7 +64,11 @@ const PlayMovie = () => {
     fetchKey();
   }, [dispatch]);
 
-  console.log(keyState.youtubeKey);
+  const setPlayerReady = () => {
+    setIsPlayerReady(true);
+  };
+
+  console.log(isPlayerReady);
 
   const options = {
     allowPresentation: true,
@@ -72,12 +77,16 @@ const PlayMovie = () => {
     },
   };
 
+  // if (!isPlayerReady) return <PlaySkeleton />;
+
   return (
     <div className={styles.play}>
+      {!isPlayerReady && <PlaySkeleton />}
       <Youtube
         opts={options}
         videoId={keyState.youtubeKey}
         className={styles.play__youtube}
+        onReady={setPlayerReady}
       />
     </div>
   );

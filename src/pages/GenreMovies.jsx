@@ -4,6 +4,7 @@ import MovieCard from "../components/movie/MovieCard";
 import { useTmdb, useTmdbInfinite } from "../hooks/use-http";
 import styles from "./GenreMovies.module.css";
 import requests from "../http/requests";
+import CardSkeleton from "../components/loaders/CardSkeleton";
 
 const GenreMovies = () => {
   const location = useLocation();
@@ -20,9 +21,9 @@ const GenreMovies = () => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        const imgLoaded = node.complete && node.naturalHeight !== 0;
-        console.log(imgLoaded);
-        if (imgLoaded && entries[0].isIntersecting && hasMore)
+        // const imgLoaded = node.complete && node.naturalHeight !== 0;
+        // console.log(imgLoaded);
+        if (entries[0].isIntersecting && hasMore)
           setPageNumber((prevPage) => prevPage + 1);
       });
       if (node) observer.current.observe(node);
@@ -40,18 +41,20 @@ const GenreMovies = () => {
     <div className={styles.movies}>
       <h2 className="heading-secondary">{genreName} Movies</h2>
       <section className={styles.movies__items}>
-        {movies.map((movie, index) => {
-          if (movies.length === index + 1) {
-            return (
-              // <div ref={lastElementRef}>
-              <MovieCard key={movie.id} movie={movie} ref={lastElementRef} />
-              // </div>
-            );
-          } else {
-            return <MovieCard key={movie.id} movie={movie} />;
-          }
-        })}
-        {isLoading && <h2>Loading...</h2>}
+        {!isLoading &&
+          movies.map((movie, index) => {
+            if (movies.length === index + 1) {
+              return (
+                <MovieCard key={movie.id} movie={movie} ref={lastElementRef} />
+              );
+            } else {
+              return <MovieCard key={movie.id} movie={movie} />;
+            }
+          })}
+        {isLoading &&
+          [...Array(20).keys()].map((skl, i) => (
+            <CardSkeleton isLarge={false} key={i} />
+          ))}
         {error && <h2>Error! {error}</h2>}
       </section>
     </div>

@@ -14,6 +14,7 @@ import {
 } from "../../utils/utils";
 import { useTmdbInit } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
+import BannerSkeleton from "../loaders/BannerSkeleton";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
@@ -63,6 +64,8 @@ const Banner = () => {
   const runtime = displayMovie?.runtime;
   const year = displayMovie?.release_date?.split("-")[0];
   const genres = displayMovie?.genres;
+
+  if (isBannerLoading || isLoading) return <BannerSkeleton />;
 
   return (
     <header

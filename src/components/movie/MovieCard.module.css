@@ -1,6 +1,7 @@
 .card {
   box-shadow: var(--shadow-lg);
   width: 25rem;
+  height: 14.1rem;
   position: relative;
   overflow: hidden;
   border-radius: 10px;
@@ -8,7 +9,9 @@
 }
 
 .card__lg {
+  position: relative;
   width: 20rem;
+  height: 30rem;
 }
 
 .card__image {
@@ -71,4 +74,3 @@
   flex-wrap: wrap;
   margin-top: 1rem;
 }
-
