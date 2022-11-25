@@ -27,11 +27,9 @@ const GenreMovies = () => {
           setPageNumber((prevPage) => prevPage + 1);
       });
       if (node) observer.current.observe(node);
-      console.log(node);
     },
     [isLoading, hasMore]
   );
-  console.log(movies);
   useEffect(() => {
     setMovies([]);
     setPageNumber(1);

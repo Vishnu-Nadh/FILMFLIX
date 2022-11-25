@@ -22,12 +22,18 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { movieList } = useSelector((state) => state.movie);
-  const imgRef = useRef();
+  const imgRef = useRef(false);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
   const isWatchListed = movieList.find((item) => item.id === movie.id);
 
   const setBannerHandler = () => {
     dispatch(setBannerMovie(movie.id));
     navigate("/");
+  };
+
+  const imageLoadHandler = () => {
+    setIsImageLoading(false);
   };
 
   const playMovieHandler = (event) => {
@@ -52,11 +58,14 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
       }
       onClick={setBannerHandler}
     >
+      {isImageLoading && <div className="img__loader"></div>}
       <img
         ref={imgRef}
         src={`${imageBaseUrl}${imageName}`}
         alt={movie.title}
         className={styles.card__image}
+        loading="lazy"
+        onLoad={imageLoadHandler}
       />
       <div className={styles.card__content}>
         <h4>{movie?.title || movie?.name || movie?.original_name}</h4>
