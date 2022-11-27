@@ -1,5 +1,9 @@
 .row {
   position: relative;
+  /* overflow: hidden; */
+  padding: 0 3.2rem;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .row__title {
@@ -7,20 +11,28 @@
   padding-top: 1rem;
 }
 
+.row__wrapper {
+  position: relative;
+  padding: 0 3rem;
+  overflow: hidden;
+}
+
 .row__items {
   display: grid;
   grid-auto-flow: column;
   grid-auto-rows: 1fr;
   gap: 1.6rem;
-  padding: 1.8rem 3.2rem;
-  overflow: hidden;
+  padding: 1.8rem 1rem;
+  box-sizing: content-box;
   scroll-behavior: smooth;
   transition: all 0.45s ease-out;
   position: relative;
   overscroll-behavior-inline: contain;
+  transform: scale(1.05);
 
   scroll-snap-type: inline mandatory;
   overflow-x: auto;
+  cursor: grab;
 }
 
 .row__items::-webkit-scrollbar {
@@ -44,12 +56,7 @@
 }
 
 .row__items:hover {
-  transform: scale(1.03);
-}
-
-.row__wrapper {
-  position: relative;
-  padding: 0 1.6rem;
+  transform: scale(1.08);
 }
 
 .row__wrapper > button {

@@ -14,8 +14,6 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const [prevScrollLeft, setPrevScrollLeft] = useState(0);
   const itemsRef = useRef();
 
-  // console.log(scrollStart, scrollEnd);
-
   const scrollLeftHandler = () => {
     const items = itemsRef.current;
     const itemsVisibleWidth = items?.clientWidth;
@@ -46,7 +44,6 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
       setScrollEnd(true);
     }
   };
-
 
   const mouseMoveHandler = (e) => {
     e.preventDefault();

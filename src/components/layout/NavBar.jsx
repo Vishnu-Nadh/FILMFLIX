@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import MovieFilter from "../movie/MovieFilter";
-
+import SearchBar from "../search/SearchBar";
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -45,16 +45,35 @@ const NavBar = () => {
         <NavLink to={user ? "/" : "/welcome"}>
           <img src={logo} alt="logo" className={styles.nav__logo} />
         </NavLink>
-        <MovieFilter />
-        <div className={styles.nav__links}>
+        <div className={styles.nav__items}>
           {user && (
             <>
-              <NavLink className={styles.nav__avatar}>
-                <FiUser />
-              </NavLink>
+              <div className={styles.nav__movie_links}>
+                <MovieFilter />
+                <SearchBar />
+              </div>
+
               <div className={styles.nav__profile_links}>
-                <Link to="/watchlist">WatchList</Link>
-                <Link to="/account">My Account</Link>
+                <NavLink
+                  to="/watchlist"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.active}`
+                      : `${styles.nav__profile_link}`
+                  }
+                >
+                  WatchList
+                </NavLink>
+                <NavLink
+                  to="/account"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.active}`
+                      : `${styles.nav__profile_link}`
+                  }
+                >
+                  My Account
+                </NavLink>
                 <button className="btn-nav" onClick={logoutHandler}>
                   Logout
                 </button>
