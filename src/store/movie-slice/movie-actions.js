@@ -41,8 +41,6 @@ export const addMovieToList = (movie) => {
     try {
       dispatch(movieActions.setMovieLoading(true));
       dispatch(movieActions.setMovieError(null));
-      console.log(movie);
-      console.log(`${movie.id}`);
 
       await setDoc(doc(db, "movielist", `${movie.id}`), movie);
 
@@ -62,7 +60,6 @@ export const removeMovieFromList = (movie) => {
     try {
       dispatch(movieActions.setMovieLoading(true));
       dispatch(movieActions.setMovieError(null));
-      console.log(movie);
 
       await deleteDoc(doc(db, "movielist", `${movie.id}`));
 

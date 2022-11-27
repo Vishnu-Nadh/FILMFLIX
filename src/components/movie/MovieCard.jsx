@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./MovieCard.module.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import {
   addMovieToList,
   removeMovieFromList,
 } from "../../store/movie-slice/movie-actions";
-import CardSkeleton from "../loaders/CardSkeleton";
+import Spinner from "../loaders/Spinner";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -21,7 +21,9 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { movieList } = useSelector((state) => state.movie);
+  const { movieList, isMovieActionLoading } = useSelector(
+    (state) => state.movie
+  );
   const imgRef = useRef(false);
   const [isImageLoading, setIsImageLoading] = useState(true);
 
@@ -68,7 +70,12 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
         onLoad={imageLoadHandler}
       />
       <div className={styles.card__content}>
-        <h4>{movie?.title || movie?.name || movie?.original_name}</h4>
+        <h4>
+          {truncateText(
+            movie?.title || movie?.name || movie?.original_name,
+            25
+          )}
+        </h4>
         <p>
           {isLarge
             ? truncateText(movie?.overview || "", 80)
@@ -79,8 +86,13 @@ const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
             Play
           </button>
           <button className="btn-secondary-sm" onClick={watchListHandler}>
-            {isWatchListed && <BsCheckLg className={styles.card__btn_icon} />}
-            {!isWatchListed && <BsPlusLg className={styles.card__btn_icon} />}
+            {!isMovieActionLoading && isWatchListed && (
+              <BsCheckLg className={styles.card__btn_icon} />
+            )}
+            {isMovieActionLoading && <Spinner isSmall={true} />}
+            {!isMovieActionLoading && !isWatchListed && (
+              <BsPlusLg className={styles.card__btn_icon} />
+            )}
             <span>My List</span>
           </button>
         </div>

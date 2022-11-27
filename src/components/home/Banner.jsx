@@ -15,6 +15,7 @@ import {
 import { useTmdbInit } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import BannerSkeleton from "../loaders/BannerSkeleton";
+import Spinner from "../loaders/Spinner";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
@@ -96,8 +97,13 @@ const Banner = () => {
             Play
           </button>
           <button className="btn-secondary" onClick={WatchListHandler}>
-            {isWatchListed && <BsCheckLg className={styles.banner__btn_icon} />}
-            {!isWatchListed && <BsPlusLg className={styles.banner__btn_icon} />}
+            {!isMovieActionLoading && isWatchListed && (
+              <BsCheckLg className={styles.banner__btn_icon} />
+            )}
+            {isMovieActionLoading && <Spinner isSmall={false} />}
+            {!isMovieActionLoading && !isWatchListed && (
+              <BsPlusLg className={styles.banner__btn_icon} />
+            )}
             <span>Watch List</span>
           </button>
         </div>

@@ -35,6 +35,7 @@
 
 .banner__btn_icon {
   width: 2rem;
+  height: 2rem;
   color: var(--color-red);
 }
 

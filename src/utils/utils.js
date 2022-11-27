@@ -6,7 +6,11 @@ export const truncateText = (text, numChars) => {
 
 export const getGenres = (array) => {
   if (array) {
-    return array[0].name + ", " + array[1].name;
+    if (array.length >= 2) {
+      return array[0].name + ", " + array[1].name;
+    } else {
+      return array[0].name;
+    }
   }
 };
 

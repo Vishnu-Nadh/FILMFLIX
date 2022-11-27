@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { useLocation } from "react-router-dom";
 import MovieCard from "../components/movie/MovieCard";
-import { useTmdb, useTmdbInfinite } from "../hooks/use-http";
+import { useTmdbInfinite } from "../hooks/use-http";
 import styles from "./GenreMovies.module.css";
-import requests from "../http/requests";
 import CardSkeleton from "../components/loaders/CardSkeleton";
 
 const GenreMovies = () => {
@@ -21,10 +25,9 @@ const GenreMovies = () => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        // const imgLoaded = node.complete && node.naturalHeight !== 0;
-        // console.log(imgLoaded);
-        if (entries[0].isIntersecting && hasMore)
+        if (entries[0].isIntersecting && hasMore) {
           setPageNumber((prevPage) => prevPage + 1);
+        }
       });
       if (node) observer.current.observe(node);
     },

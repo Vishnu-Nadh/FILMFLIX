@@ -63,3 +63,33 @@
     transform: translateX(100%);
   }
 }
+
+.spinner {
+  display: inline-block;
+  border: 3px solid rgba(214, 27, 27, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--color-red);
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+.spinner-sm {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.spinner-lg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
