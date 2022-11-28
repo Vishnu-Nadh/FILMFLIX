@@ -10,6 +10,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import MovieFilter from "../movie/MovieFilter";
 import SearchBar from "../search/SearchBar";
+import SearchList from "../search/SearchList";
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -51,6 +52,7 @@ const NavBar = () => {
               <div className={styles.nav__movie_links}>
                 <MovieFilter />
                 <SearchBar />
+                <SearchList />
               </div>
 
               <div className={styles.nav__profile_links}>

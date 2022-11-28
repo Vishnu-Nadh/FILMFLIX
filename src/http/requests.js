@@ -18,6 +18,9 @@ const requests = {
   fetchMoviesWithGenre: (genreId, pageNo) => {
     return `/discover/movie?api_key=${APIKEY}&with_genres=${genreId}&page=${pageNo}`;
   },
+  fetchMoviesOnQuery: (query) => {
+    return `/search/movie?api_key=${APIKEY}&query=${query}&language=en-US&page=1`;
+  },
 };
 
 export default requests;

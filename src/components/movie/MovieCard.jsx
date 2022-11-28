@@ -14,91 +14,99 @@ import Spinner from "../loaders/Spinner";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original/";
 
-const MovieCard = React.forwardRef(({ movie, isLarge = false }, ref = null) => {
-  // console.log(movie);
-  const imageName = isLarge ? movie.poster_path : movie.backdrop_path;
-  if (!imageName) return;
+const MovieCard = React.forwardRef(
+  ({ movie, isLarge = false, isSearch = false }, ref = null) => {
+    // console.log(movie);
+    const imageName = isLarge ? movie.poster_path : movie.backdrop_path;
+    if (!imageName) return;
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { movieList, isMovieActionLoading } = useSelector(
-    (state) => state.movie
-  );
-  const imgRef = useRef(false);
-  const [isImageLoading, setIsImageLoading] = useState(true);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { movieList, isMovieActionLoading } = useSelector(
+      (state) => state.movie
+    );
+    const imgRef = useRef(false);
+    const [isImageLoading, setIsImageLoading] = useState(true);
 
-  const isWatchListed = movieList.find((item) => item.id === movie.id);
+    const isWatchListed = movieList.find((item) => item.id === movie.id);
 
-  const setBannerHandler = () => {
-    dispatch(setBannerMovie(movie.id));
-    navigate("/");
-  };
+    const setBannerHandler = () => {
+      dispatch(setBannerMovie(movie.id));
+      navigate("/");
+    };
 
-  const imageLoadHandler = () => {
-    setIsImageLoading(false);
-  };
+    const imageLoadHandler = () => {
+      setIsImageLoading(false);
+    };
 
-  const playMovieHandler = (event) => {
-    event.stopPropagation();
-    navigate(`/watch/${movie.id}`);
-  };
+    const playMovieHandler = (event) => {
+      event.stopPropagation();
+      navigate(`/watch/${movie.id}`);
+    };
 
-  const watchListHandler = (event) => {
-    event.stopPropagation();
-    if (isWatchListed) {
-      dispatch(removeMovieFromList(movie));
-    } else {
-      dispatch(addMovieToList(movie));
-    }
-  };
-
-  return (
-    <figure
-      ref={ref}
-      className={
-        isLarge ? `${styles.card} ${styles.card__lg}` : `${styles.card}`
+    const watchListHandler = (event) => {
+      event.stopPropagation();
+      if (isWatchListed) {
+        dispatch(removeMovieFromList(movie));
+      } else {
+        dispatch(addMovieToList(movie));
       }
-      onClick={setBannerHandler}
-    >
-      {isImageLoading && <div className="img__loader"></div>}
-      <img
-        ref={imgRef}
-        src={`${imageBaseUrl}${imageName}`}
-        alt={movie.title}
-        className={styles.card__image}
-        loading="lazy"
-        onLoad={imageLoadHandler}
-      />
-      <div className={styles.card__content}>
-        <h4>
-          {truncateText(
-            movie?.title || movie?.name || movie?.original_name,
-            25
+    };
+
+    return (
+      <figure
+        ref={ref}
+        className={
+          isLarge ? `${styles.card} ${styles.card__lg}` : `${styles.card}`
+        }
+        onClick={setBannerHandler}
+      >
+        {isImageLoading && <div className="img__loader"></div>}
+        <img
+          ref={imgRef}
+          src={`${imageBaseUrl}${imageName}`}
+          alt={movie.title}
+          className={styles.card__image}
+          loading="lazy"
+          onLoad={imageLoadHandler}
+        />
+        <div
+          className={[styles.card__content, !isSearch && styles.translate].join(
+            " "
           )}
-        </h4>
-        <p>
-          {isLarge
-            ? truncateText(movie?.overview || "", 80)
-            : truncateText(movie?.overview || "", 50)}
-        </p>
-        <div className={styles.card__btns}>
-          <button className="btn-primary-sm" onClick={playMovieHandler}>
-            Play
-          </button>
-          <button className="btn-secondary-sm" onClick={watchListHandler}>
-            {!isMovieActionLoading && isWatchListed && (
-              <BsCheckLg className={styles.card__btn_icon} />
+        >
+          <h4>
+            {truncateText(
+              movie?.title || movie?.name || movie?.original_name,
+              25
             )}
-            {isMovieActionLoading && <Spinner isSmall={true} />}
-            {!isMovieActionLoading && !isWatchListed && (
-              <BsPlusLg className={styles.card__btn_icon} />
-            )}
-            <span>My List</span>
-          </button>
+          </h4>
+          <p>
+            {isLarge
+              ? truncateText(movie?.overview || "", 80)
+              : truncateText(movie?.overview || "", 50)}
+          </p>
+          {!isSearch && (
+            <div className={styles.card__btns}>
+              <button className="btn-primary-sm" onClick={playMovieHandler}>
+                Play
+              </button>
+              <button className="btn-secondary-sm" onClick={watchListHandler}>
+                {!isMovieActionLoading && isWatchListed && (
+                  <BsCheckLg className={styles.card__btn_icon} />
+                )}
+                {isMovieActionLoading && <Spinner isSmall={true} />}
+                {!isMovieActionLoading && !isWatchListed && (
+                  <BsPlusLg className={styles.card__btn_icon} />
+                )}
+                <span>My List</span>
+              </button>
+            </div>
+          )}
         </div>
-      </div>
-    </figure>
-  );
-});
+      </figure>
+    );
+  }
+);
 
 export default MovieCard;

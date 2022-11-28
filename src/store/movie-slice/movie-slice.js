@@ -7,6 +7,9 @@ const initialMovieState = {
   currentBannerMovie: null,
   isBannerLoading: false,
   BannerError: null,
+  searchResults: [],
+  isSearchResultsLoading: false,
+  searchResultsError: null,
 };
 
 const MovieSlice = createSlice({
@@ -44,9 +47,17 @@ const MovieSlice = createSlice({
     setBannerError: (state, action) => {
       state.BannerError = action.payload;
     },
+    setSearchResults: (state, action) => {
+      state.searchResults = action.payload;
+    },
+    setSearchResultsLoading: (state, action) => {
+      state.isSearchResultsLoading = action.payload;
+    },
+    setSearchResultsError: (state, action) => {
+      state.searchResultsError = action.payload;
+    },
   },
 });
-
 
 export const movieActions = MovieSlice.actions;
 export default MovieSlice.reducer;

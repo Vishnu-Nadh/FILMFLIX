@@ -93,3 +93,26 @@ export const setBannerMovie = (id) => {
     }
   };
 };
+
+export const getSearchResults = (query) => {
+  return async (dispatch) => {
+    try {
+      dispatch(movieActions.setSearchResultsLoading(true));
+      dispatch(movieActions.setSearchResultsError(null));
+
+      const response = await axios.get(requests.fetchMoviesOnQuery(query));
+      const movies = response.data.results;
+      console.log(query);
+      console.log(movies);
+
+      dispatch(movieActions.setSearchResults(movies));
+      dispatch(movieActions.setSearchResultsLoading(false));
+    } catch (error) {
+      console.error(error);
+      dispatch(
+        movieActions.setSearchResultsError(error.response?.data?.status_message)
+      );
+      dispatch(movieActions.setSearchResultsLoading(false));
+    }
+  };
+};
