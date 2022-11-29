@@ -43,11 +43,15 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
   width: 100%;
+  position: relative;
 }
 
 .input-group input {
+}
+
+.login__input {
   width: 100%;
   font-size: 1.4rem;
   font-weight: 600;
@@ -59,6 +63,20 @@
   border: none;
   background-color: #444;
   color: #fff;
+}
+
+.login__input:focus {
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 0 4px #ffba00;
+}
+
+.login__input:-webkit-autofill,
+.login__input:-webkit-autofill:hover,
+.login__input:-webkit-autofill:focus {
+  background-color: #444;
+  -webkit-text-fill-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .login__links {
@@ -76,4 +94,22 @@
 .login__link a:hover,
 .login__link a:active {
   color: #fff;
+}
+
+.error-message {
+  height: 1.2rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  /* color: #ff7200; */
+  color: #ffba00;
+  font-style: italic;
+}
+
+.login__icons {
+  font-size: 1.8rem;
+  color: var(--color-black);
+  position: absolute;
+  right: 1rem;
+  top: 1.2rem;
+  color: var(--color-black);
 }

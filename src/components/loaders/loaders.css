@@ -84,6 +84,11 @@
   height: 2rem;
 }
 
+.spinner-white {
+  border: 3px solid #bbb;
+  border-top-color: #fff;
+}
+
 @keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
@@ -94,3 +99,4 @@
     -webkit-transform: rotate(360deg);
   }
 }
+

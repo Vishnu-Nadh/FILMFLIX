@@ -83,9 +83,11 @@ const NavBar = () => {
             </>
           )}
           {!user && (
-            <NavLink to="/auth" state={{ isSignIn: true }}>
-              <button className="btn-nav">Login</button>
-            </NavLink>
+            <div className={styles.nav__profile_links}>
+              <NavLink to="/auth" state={{ isSignIn: true }}>
+                <button className="btn-nav">Login</button>
+              </NavLink>
+            </div>
           )}
         </div>
       </div>
