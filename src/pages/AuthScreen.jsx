@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../store/user-slice";
+import { login } from "../store/user-slice/user-slice";
 import { Formik, Field, Form, ErrorMessage, useField } from "formik";
 import Spinner from "../components/loaders/Spinner";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -22,6 +22,8 @@ import {
   signUpFromWelcomeInitialValues,
   createErrorMessage,
 } from "../utils/utils";
+import { createNewUserData } from "../store/user-slice/user-actions";
+import { setInitialUserWatchList } from "../store/movie-slice/movie-actions";
 
 const LoginScreen = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -45,43 +47,57 @@ const LoginScreen = () => {
     setIsSignIn(locationState.isSignIn);
   }, [location]);
 
-  const authenticateUser = (values, { setSubmitting }) => {
+  const authenticateUser = async (values, { setSubmitting }) => {
     // sing in user
     const email = location.state?.email || values.email;
     const password = values.password;
-    console.log(email, password);
 
     if (isSignIn) {
-      setAuthError(null);
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          dispatch(
-            login({
-              uid: userCredential.user.uid,
-              email: userCredential.user.email,
-            })
-          );
-          navigate("/");
-          setSubmitting(false);
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          setAuthError(createErrorMessage(errorMessage));
-          setSubmitting(false);
-        });
+      try {
+        setAuthError(null);
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        dispatch(
+          login({
+            uid: userCredential.user.uid,
+            email: userCredential.user.email,
+          })
+        );
+        // fetch the user data add to movie list
+        dispatch(setInitialUserWatchList(userCredential.user.uid));
+
+        setSubmitting(false);
+        navigate("/");
+      } catch (error) {
+        const errorMessage = error.message;
+        setAuthError(createErrorMessage(errorMessage));
+        setSubmitting(false);
+      }
     } else {
-      setAuthError(null);
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          setIsSignIn(true);
-          setSubmitting(false);
-          setAuthError(null);
-        })
-        .catch((error) => {
-          const errorMessage = error.message;
-          setAuthError(createErrorMessage(errorMessage));
-          setSubmitting(false);
-        });
+      try {
+        setAuthError(null);
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        // set new use data
+        await createNewUserData(
+          userCredential.user.uid,
+          userCredential.user.email
+        );
+
+        setIsSignIn(true);
+        setSubmitting(false);
+        setAuthError(null);
+      } catch (error) {
+        const errorMessage = error.message;
+        setAuthError(createErrorMessage(errorMessage));
+        setSubmitting(false);
+      }
     }
   };
 

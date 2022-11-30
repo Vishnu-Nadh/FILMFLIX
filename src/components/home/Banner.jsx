@@ -1,16 +1,14 @@
-import React, { useEffect, useReducer } from "react";
 import styles from "./Banner.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { BsPlusLg, BsCheckLg } from "react-icons/bs";
 import {
-  addMovieToList,
-  removeMovieFromList,
+  addToUserWatchList,
+  removeFromUserWatchlist,
 } from "../../store/movie-slice/movie-actions";
 import {
   truncateText,
   getGenres,
   minutesToHours,
-  getYear,
 } from "../../utils/utils";
 import { useTmdbInit } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
@@ -30,9 +28,9 @@ const Banner = () => {
     isBannerLoading,
     BannerError,
   } = useSelector((state) => state.movie);
+  const user = useSelector((state) => state.user.user);
 
   const { data: initialBannerMovie, isLoading, error } = useTmdbInit();
-  // console.log(initialBannerMovie, isLoading);
 
   const displayMovie = currentBannerMovie
     ? currentBannerMovie
@@ -42,9 +40,9 @@ const Banner = () => {
 
   const WatchListHandler = () => {
     if (isWatchListed) {
-      dispatch(removeMovieFromList(displayMovie));
+      dispatch(removeFromUserWatchlist(user.uid, displayMovie));
     } else {
-      dispatch(addMovieToList(displayMovie));
+      dispatch(addToUserWatchList(user.uid, displayMovie));
     }
   };
 

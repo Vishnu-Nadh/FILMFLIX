@@ -4,7 +4,7 @@ import logo from "../../assets/logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../store/user-slice";
+import { logout } from "../../store/user-slice/user-slice";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";

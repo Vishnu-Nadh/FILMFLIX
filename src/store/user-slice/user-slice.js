@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { auth } from "../firebase-config";
+import { auth } from "../../firebase-config";
 
 const initialUser = localStorage.getItem("user")
   ? JSON.parse(localStorage.getItem("user"))

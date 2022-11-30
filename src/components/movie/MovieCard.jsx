@@ -7,8 +7,8 @@ import { setBannerMovie } from "../../store/movie-slice/movie-actions";
 import { BsCheckLg, BsPlusLg } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import {
-  addMovieToList,
-  removeMovieFromList,
+  addToUserWatchList,
+  removeFromUserWatchlist,
 } from "../../store/movie-slice/movie-actions";
 import Spinner from "../loaders/Spinner";
 
@@ -25,6 +25,7 @@ const MovieCard = React.forwardRef(
     const { movieList, isMovieActionLoading } = useSelector(
       (state) => state.movie
     );
+    const user = useSelector((state) => state.user.user);
     const imgRef = useRef(false);
     const [isImageLoading, setIsImageLoading] = useState(true);
 
@@ -46,10 +47,11 @@ const MovieCard = React.forwardRef(
 
     const watchListHandler = (event) => {
       event.stopPropagation();
+      console.log(isWatchListed);
       if (isWatchListed) {
-        dispatch(removeMovieFromList(movie));
+        dispatch(removeFromUserWatchlist(user.uid, movie));
       } else {
-        dispatch(addMovieToList(movie));
+        dispatch(addToUserWatchList(user.uid, movie));
       }
     };
 

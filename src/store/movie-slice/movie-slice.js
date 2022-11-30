@@ -19,7 +19,6 @@ const MovieSlice = createSlice({
     setBannerMovie: (state, action) => {
       state.currentBannerMovie = action.payload;
     },
-
     setInitialMovieData: (state, action) => {
       state.movieList = action.payload;
     },
