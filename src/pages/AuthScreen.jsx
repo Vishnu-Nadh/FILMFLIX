@@ -200,7 +200,6 @@ const LoginScreen = () => {
               <div className="btn-overlay">
                 <button
                   type="submit"
-                  disabled={!formik.isValid}
                   className={styles.login__btn}
                 >
                   {isSignIn ? "Login" : "Sign Up"}
