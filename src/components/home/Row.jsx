@@ -3,7 +3,8 @@ import MovieCard from "../movie/MovieCard";
 import { useTmdb } from "../../hooks/use-http";
 import CardSkeleton from "../loaders/CardSkeleton";
 import { BsChevronDoubleRight, BsChevronDoubleLeft } from "react-icons/bs";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import Error from "../utility/Error";
 
 const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   const { data: movies, isLoading, error } = useTmdb(fetchUrl, []);
@@ -61,6 +62,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
   return (
     <section className={styles.row}>
       <h2 className={`${styles.row__title} heading-secondary`}>{title}</h2>
+      {error && <Error errorMessage={error} />}
       <div className={styles.row__wrapper}>
         <button
           className={styles.row__btn_prev}

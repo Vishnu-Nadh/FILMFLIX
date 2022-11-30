@@ -1,0 +1,21 @@
+.error {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2em;
+}
+
+.error__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .8em;
+}
+
+.error__icon {
+    font-size: 2.4em;
+    color: var(--color-red);
+}
+

@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { movieActions } from "../../store/movie-slice/movie-slice";
 import { useDispatch } from "react-redux";
 import CardSkeleton from "../loaders/CardSkeleton";
+import Error from "../utility/Error";
 
 const SearchList = () => {
   const { searchResults, isSearchResultsLoading, searchResultsError } =
@@ -12,10 +13,11 @@ const SearchList = () => {
   const dispatch = useDispatch();
   const listClasses = [
     styles.list,
-    searchResults.length === 0 ? styles.hide : "",
+    (searchResults.length === 0 && !searchResultsError) ? styles.hide : "",
   ].join(" ");
   return (
     <div className={listClasses}>
+      {searchResultsError && <Error errorMessage={searchResultsError} />}
       {isSearchResultsLoading &&
         [...Array(3).keys()].map((item, id) => <CardSkeleton />)}
       {searchResults.map((movie) => (

@@ -5,6 +5,7 @@ import Youtube from "react-youtube";
 import axios from "../http/axios";
 import requests from "../http/requests";
 import PlaySkeleton from "../components/loaders/PlaySkeleton";
+import Error from "../components/utility/Error";
 
 const initialKeyState = {
   youtubeKey: "",
@@ -58,7 +59,7 @@ const PlayMovie = () => {
         dispatch({ type: "SUCCESS", key: key });
       } catch (error) {
         console.error(error);
-        dispatch({ type: "ERROR", error: error });
+        dispatch({ type: "ERROR", error: error.message });
       }
     };
     fetchKey();
@@ -68,8 +69,6 @@ const PlayMovie = () => {
     setIsPlayerReady(true);
   };
 
-  console.log(isPlayerReady);
-
   const options = {
     allowPresentation: true,
     playerVars: {
@@ -77,17 +76,20 @@ const PlayMovie = () => {
     },
   };
 
-  // if (!isPlayerReady) return <PlaySkeleton />;
+  console.log(keyState);
 
   return (
     <div className={styles.play}>
-      {!isPlayerReady && <PlaySkeleton />}
-      <Youtube
-        opts={options}
-        videoId={keyState.youtubeKey}
-        className={styles.play__youtube}
-        onReady={setPlayerReady}
-      />
+      {!isPlayerReady && !keyState.keyError && <PlaySkeleton />}
+      {keyState.keyError && <Error errorMessage={keyState.keyError} />}
+      {!keyState.keyError && (
+        <Youtube
+          opts={options}
+          videoId={keyState.youtubeKey}
+          className={styles.play__youtube}
+          onReady={setPlayerReady}
+        />
+      )}
     </div>
   );
 };

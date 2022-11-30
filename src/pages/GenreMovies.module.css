@@ -1,5 +1,6 @@
 .movies {
   padding-top: 8rem;
+  min-width: 80vw;
 }
 
 .movies h2 {

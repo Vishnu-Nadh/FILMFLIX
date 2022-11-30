@@ -5,15 +5,12 @@ import {
   addToUserWatchList,
   removeFromUserWatchlist,
 } from "../../store/movie-slice/movie-actions";
-import {
-  truncateText,
-  getGenres,
-  minutesToHours,
-} from "../../utils/utils";
+import { truncateText, getGenres, minutesToHours } from "../../utils/utils";
 import { useTmdbInit } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
 import BannerSkeleton from "../loaders/BannerSkeleton";
 import Spinner from "../loaders/Spinner";
+import Error from "../utility/Error";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
@@ -76,6 +73,7 @@ const Banner = () => {
         backgroundSize: "cover",
       }}
     >
+      {(BannerError || error) && <Error errorMessage={error || BannerError} />}
       <section className={styles.banner__contents}>
         <h1 className="heading-primary">
           {displayMovie?.title ||

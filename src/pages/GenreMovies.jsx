@@ -1,14 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-} from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import MovieCard from "../components/movie/MovieCard";
 import { useTmdbInfinite } from "../hooks/use-http";
 import styles from "./GenreMovies.module.css";
 import CardSkeleton from "../components/loaders/CardSkeleton";
+import Error from "../components/utility/Error";
 
 const GenreMovies = () => {
   const location = useLocation();
@@ -41,6 +37,7 @@ const GenreMovies = () => {
   return (
     <div className={styles.movies}>
       <h2 className="heading-secondary">{genreName} Movies</h2>
+      {error && <Error errorMessage={error} />}
       <section className={styles.movies__items}>
         {!isLoading &&
           movies.map((movie, index) => {
@@ -56,7 +53,6 @@ const GenreMovies = () => {
           [...Array(20).keys()].map((skl, i) => (
             <CardSkeleton isLarge={false} key={i} />
           ))}
-        {error && <h2>Error! {error}</h2>}
       </section>
     </div>
   );
