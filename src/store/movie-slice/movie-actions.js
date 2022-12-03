@@ -14,7 +14,6 @@ import {
 import db from "../../firebase-config";
 import axios from "../../http/axios";
 import requests from "../../http/requests";
-import { async } from "@firebase/util";
 
 // MOVIE LIST ACTION CREATERS
 

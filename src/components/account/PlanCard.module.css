@@ -5,6 +5,10 @@
   justify-items: center;
 }
 
+.plan:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 .plan h2 {
   padding: 2rem 2rem 1rem 2rem;
   background-color: var(--color-red);
@@ -29,6 +33,15 @@
   color: var(--color-red);
   background-color: #fff;
   opacity: 0.7;
+  transition: all 0.3s ease-in-out;
+}
+
+.plan__btn:hover {
+  background-color: var(--color-red);
+  color: #fff;
+  border-radius: 10px;
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .plan__devices {

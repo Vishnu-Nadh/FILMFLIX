@@ -42,3 +42,11 @@
   display: grid;
   grid-auto-flow: row;
 }
+
+.subscription__info {
+  text-align: center;
+  width: 100%;
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}

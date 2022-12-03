@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import * as Yup from "yup";
 
 export const truncateText = (text, numChars) => {
@@ -18,6 +19,32 @@ export const getGenres = (array) => {
 
 export const getYear = (movie) => {
   return movie?.release_date?.split("-")[0] + " .";
+};
+
+export const getDate = (timestamp) => {
+  const dateObj = new Date(timestamp * 1000);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const year = dateObj.getFullYear();
+  const month = months[dateObj.getMonth()];
+  const date = dateObj.getDate();
+  // const hour = dateObj.getHours();
+  // const min = dateObj.getMinutes();
+  // const sec = dateObj.getSeconds();
+  const time = date + "/" + month + "/" + year;
+  return time;
 };
 
 export const minutesToHours = (minutes) => {

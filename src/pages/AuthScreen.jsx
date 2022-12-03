@@ -36,10 +36,6 @@ const LoginScreen = () => {
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [isConfPasswordShow, setIsConfPasswordShow] = useState(false);
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-
-  // console.log(authError)
 
   useEffect(() => {
     const locationState = location.state;
@@ -103,9 +99,8 @@ const LoginScreen = () => {
 
   const toggleSignIn = () => {
     setIsSignIn((prevState) => !prevState);
+    setAuthError(null);
   };
-
-  // console.log(location.state);
 
   const formInitialValues = isSignIn
     ? signInInitialValues
@@ -198,10 +193,7 @@ const LoginScreen = () => {
                 </div>
               )}
               <div className="btn-overlay">
-                <button
-                  type="submit"
-                  className={styles.login__btn}
-                >
+                <button type="submit" className={styles.login__btn}>
                   {isSignIn ? "Login" : "Sign Up"}
                 </button>
                 {formik.isSubmitting && (
