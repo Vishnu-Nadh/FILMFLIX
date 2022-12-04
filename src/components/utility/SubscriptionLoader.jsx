@@ -11,7 +11,9 @@ const LoaderModel = () => {
 
 const LoaderLine = () => {
   return createPortal(
-    <div className={styles.loader__line}></div>,
+    <div className={styles.loader__line}>
+      <div className={styles.loader__bg}></div>
+    </div>,
     loaderline
   );
 };

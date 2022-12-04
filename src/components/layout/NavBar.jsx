@@ -14,6 +14,7 @@ import SearchList from "../search/SearchList";
 
 const NavBar = () => {
   const [showNav, setShowNav] = useState(false);
+  const [showProfileLinks, setShowProfileLinks] = useState(false);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -54,8 +55,18 @@ const NavBar = () => {
                 <SearchBar />
                 <SearchList />
               </div>
-
-              <div className={styles.nav__profile_links}>
+              <FiUser
+                className={styles.nav__user_icon}
+                onClick={() => {
+                  setShowProfileLinks((prevState) => !prevState);
+                  console.log(showProfileLinks);
+                }}
+              />
+              <div
+                className={`${styles.nav__profile_links} ${
+                  showProfileLinks ? styles.show__profile : ""
+                }`}
+              >
                 <NavLink
                   to="/watchlist"
                   className={({ isActive }) =>

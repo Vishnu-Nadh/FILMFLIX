@@ -89,7 +89,7 @@ export const checkoutSubscription = (priceId, userId) => {
       // TODO
       dispatch(subscriptionActions.setCheckoutError(null));
       dispatch(subscriptionActions.setCheckoutLoading(true));
-      
+
       // DELETE PREVIOUS SUBSCRIPTION
       await deleteCollection(db, `customers/${userId}/subscriptions`);
       await deleteCollection(db, `customers/${userId}/checkout_sessions`);
@@ -111,9 +111,9 @@ export const checkoutSubscription = (priceId, userId) => {
         }
         if (url) {
           window.location.assign(url);
+          dispatch(subscriptionActions.setCheckoutLoading(false));
         }
       });
-      dispatch(subscriptionActions.setCheckoutLoading(false));
     } catch (error) {
       console.log(error);
       dispatch(subscriptionActions.setCheckoutLoading(false));
@@ -142,5 +142,3 @@ export const cancelSubscription = (userId) => {
     }
   };
 };
-
-

@@ -15,7 +15,7 @@ const Account = () => {
   const email = auth.currentUser ? auth.currentUser.email : "user@gmail.com";
   const userId = auth.currentUser ? auth.currentUser.uid : null;
   const dispatch = useDispatch();
-  const { products, subscriptionInfo } = useSelector(
+  const { products, subscriptionInfo, checkoutLoading } = useSelector(
     (state) => state.subscription
   );
 
@@ -26,11 +26,9 @@ const Account = () => {
     }
   }, [userId]);
 
-  let loading = true;
-
   return (
     <>
-      <SubscriptionLoader />
+      {checkoutLoading && <SubscriptionLoader />}
       <main className={styles.account}>
         <section className={styles.account__section}>
           <header className={styles.account__header}>

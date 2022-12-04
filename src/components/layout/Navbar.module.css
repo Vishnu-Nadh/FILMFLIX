@@ -27,16 +27,50 @@
   flex: 1;
 }
 
+.nav__user_icon {
+  color: var(--color-red);
+  height: 8rem;
+  width: 8rem;
+  padding: 2.6rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 300;
+  cursor: pointer;
+}
+
+.nav__user_icon:hover + .nav__profile_links {
+  visibility: visible;
+  opacity: 1;
+}
+
+.nav__profile_links:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.show__profile {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 .nav__profile_links {
+  position: absolute;
+  right: 9rem;
+  background-color: rgba(20, 20, 20, 0.3);
+  border-radius: 5px;
   display: flex;
   gap: 1.6rem;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(2px);
-  border-radius: 5px;
+  backdrop-filter: blur(5px);
   transition: all 0.3s ease-in;
   font-size: 1.4rem;
   margin-left: auto;
+  height: 8rem;
+  padding: 0 2rem;
+
+  opacity: 0;
+  visibility: hidden;
 }
 
 .nav__profile_links a:link,
