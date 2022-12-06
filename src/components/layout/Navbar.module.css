@@ -96,11 +96,19 @@
   color: #fff;
   border-bottom: 2px solid var(--color-red);
 }
+.nav__logo_link {
+  text-decoration: none;
+  margin: 2rem 0;
+}
 
 .nav__logo {
-  width: 12rem;
+  /* width: 12rem; */
   cursor: pointer;
   margin-top: 12px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-red);
+  /* padding: 2rem; */
 }
 
 .nav__movie_links {

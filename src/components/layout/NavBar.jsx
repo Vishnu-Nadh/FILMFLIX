@@ -11,7 +11,6 @@ import { auth } from "../../firebase-config";
 import MovieFilter from "../movie/MovieFilter";
 import SearchBar from "../search/SearchBar";
 import SearchList from "../search/SearchList";
-import Hamburger from "../utility/Hamburger";
 
 const NavBar = () => {
   const [isNavBlack, setIsNavBlack] = useState(false);
@@ -45,8 +44,9 @@ const NavBar = () => {
   return (
     <nav className={navClasses.join(" ")}>
       <div className={styles.nav__contents}>
-        <NavLink to={user ? "/" : "/welcome"}>
-          <img src={logo} alt="logo" className={styles.nav__logo} />
+        <NavLink to={user ? "/" : "/welcome"} className={styles.nav__logo_link}>
+          {/* <img src={logo} alt="logo" className={styles.nav__logo} /> */}
+          <span className={styles.nav__logo}>FILMFLIX</span>
         </NavLink>
         <input id="toggle" type="checkbox" className={styles.toggle}></input>
         <label htmlFor="toggle" className={styles.hamburger}>
