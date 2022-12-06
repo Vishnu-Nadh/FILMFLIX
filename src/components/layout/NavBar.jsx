@@ -11,9 +11,10 @@ import { auth } from "../../firebase-config";
 import MovieFilter from "../movie/MovieFilter";
 import SearchBar from "../search/SearchBar";
 import SearchList from "../search/SearchList";
+import Hamburger from "../utility/Hamburger";
 
 const NavBar = () => {
-  const [showNav, setShowNav] = useState(false);
+  const [isNavBlack, setIsNavBlack] = useState(false);
   const [showProfileLinks, setShowProfileLinks] = useState(false);
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ const NavBar = () => {
 
   const transitionNavBar = () => {
     if (window.scrollY >= 100) {
-      setShowNav(true);
+      setIsNavBlack(true);
     } else {
-      setShowNav(false);
+      setIsNavBlack(false);
     }
   };
 
@@ -40,13 +41,19 @@ const NavBar = () => {
     navigate("/welcome");
   };
 
-  const navClasses = [styles.nav, showNav && styles.nav__black];
+  const navClasses = [styles.nav, isNavBlack && styles.nav__black];
   return (
     <nav className={navClasses.join(" ")}>
       <div className={styles.nav__contents}>
         <NavLink to={user ? "/" : "/welcome"}>
           <img src={logo} alt="logo" className={styles.nav__logo} />
         </NavLink>
+        <input id="toggle" type="checkbox" className={styles.toggle}></input>
+        <label htmlFor="toggle" className={styles.hamburger}>
+          <div className={styles["top-bun"]}></div>
+          <div className={styles.meat}></div>
+          <div className={styles["bottom-bun"]}></div>
+        </label>
         <div className={styles.nav__items}>
           {user && (
             <>
@@ -59,7 +66,6 @@ const NavBar = () => {
                 className={styles.nav__user_icon}
                 onClick={() => {
                   setShowProfileLinks((prevState) => !prevState);
-                  console.log(showProfileLinks);
                 }}
               />
               <div

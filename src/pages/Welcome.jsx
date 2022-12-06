@@ -34,18 +34,21 @@ const Welcome = () => {
         {(formik) => {
           return (
             <Form className={styles.form}>
-              <div>
+              <div className={styles.form__items}>
                 <Field
                   name="email"
                   type="text"
                   className="input"
                   placeholder="Email Address"
                 />
+                <div className="error-message error-message-sm">
+                  <ErrorMessage name="email" />
+                </div>
                 <button type="submit" className="input-btn">
                   Get Started
                 </button>
               </div>
-              <div className="error-message">
+              <div className="error-message error-message-lg">
                 <ErrorMessage name="email" />
               </div>
             </Form>

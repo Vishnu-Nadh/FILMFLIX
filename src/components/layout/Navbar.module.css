@@ -25,6 +25,7 @@
   gap: 1.6rem;
   position: relative;
   flex: 1;
+  flex-direction: row;
 }
 
 .nav__user_icon {
@@ -106,4 +107,113 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+@media (max-width: 42.5em) {
+  .nav__profile_links {
+    top: 100%;
+    right: 0;
+    flex-direction: column;
+    height: fit-content;
+    padding: 2rem;
+  }
+}
+
+.animatein {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 26.5625em) {
+  .nav__items {
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column-reverse;
+    gap: 0;
+    padding: 4rem 0;
+    background-color: rgba(20, 20, 20, 0.9);
+    backdrop-filter: blur(5px);
+
+    transform: translateY(-100%);
+    opacity: 0;
+
+    transition: all 0.5s ease-out;
+  }
+
+  .nav__profile_links {
+    position: relative;
+    flex-direction: row;
+    z-index: 1000;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    backdrop-filter: blur(0);
+    background-color: transparent;
+  }
+
+  .nav__user_icon {
+    display: none;
+  }
+
+  .hamburger {
+    /* opacity: 1;
+    visibility: visible; */
+    display: block !important;
+  }
+}
+
+.menutoggle {
+  position: relative;
+  z-index: 5000;
+}
+
+.hamburger {
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
+  width: 3rem;
+  height: 3rem;
+  z-index: 5;
+  transform: translateY(-3px);
+
+  display: none;
+  /* opacity: 0;
+  visibility: hidden; */
+}
+
+.toggle {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hamburger div {
+  position: relative;
+  width: 3rem;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--color-red);
+  margin-top: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle:checked + .hamburger .bottom-bun {
+  transform: translateY(-0.95rem) rotate(45deg);
+}
+
+.toggle:checked + .hamburger .top-bun {
+  transform: translateY(0.95rem) rotate(-45deg);
+}
+
+.toggle:checked + .hamburger .meat {
+  opacity: 0;
+}
+
+.toggle:checked + .hamburger + div {
+  transform: translateY(0);
+  opacity: 1;
 }

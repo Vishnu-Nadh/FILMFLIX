@@ -33,11 +33,22 @@ main {
 }
 
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.6px;
   background-color: var(--color-black);
+  /* min-height: 100vh; */
 }
+
+#root {
+  min-height: 100vh;
+}
+
+main {
+  margin-bottom: 0;
+}
+
+
 
 html::-webkit-scrollbar {
   width: 0.5vw;
@@ -52,7 +63,7 @@ html::-webkit-scrollbar-track {
 }
 
 body {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   position: relative;
   color: #fefefe;
   font-size: 1.4rem;
@@ -273,6 +284,10 @@ body {
   font-style: italic;
 }
 
+.error-message.error-message-sm {
+  display: none;
+}
+
 .btn-overlay {
   width: 100%;
   position: relative;
@@ -310,4 +325,59 @@ body {
   /* color: var(--color-red); */
 }
 
+/* 
+320px - 20em
+375px - 23.437em
+425px - 26.5625em
+540px (tablet-p) - 33.75em
+768px (tablet-lg-p) - 48em
+940px (tablet-l) - 58.75em
+1024px (laptop-sm/tablet-lg-landscape) - 64em
+1366 (laptop-md) - 85.375em
+1600 (laptop-lg) - 100em
+1920 (laptop-xl) - 120em
+*/
 
+@media (max-width: 120em) {
+  html {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 100em) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media (max-width: 85.375em) {
+  html {
+    font-size: 60%;
+  }
+}
+
+@media (max-width: 64em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 48em) {
+  html {
+    font-size: 40%;
+  }
+}
+
+@media (max-width: 26.5625em) {
+  .error-message.error-message-lg {
+    display: none;
+  }
+  .error-message.error-message-sm {
+    display: block;
+  }
+}
+
+/* #toggle:checked + .hamburger + div {
+  opacity: 1;
+  transform: translateY(100%);
+} */

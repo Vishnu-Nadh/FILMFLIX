@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import BannerSkeleton from "../loaders/BannerSkeleton";
 import Spinner from "../loaders/Spinner";
 import Error from "../utility/Error";
+import { BsDot } from "react-icons/bs";
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
@@ -71,6 +72,7 @@ const Banner = () => {
         linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,.6) 10%, rgba(20,20,20,0) 15%), 
         url(${bannerUrl})`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       {(BannerError || error) && <Error errorMessage={error || BannerError} />}
@@ -81,8 +83,10 @@ const Banner = () => {
             displayMovie?.original_name}
         </h1>
         <div className={styles.banner__info}>
-          {runtime && <span>{minutesToHours(runtime)} .</span>}
-          {year && <span>{year} .</span>}
+          {runtime && <span>{minutesToHours(runtime)}</span>}
+          <BsDot />
+          {year && <span>{year}</span>}
+          <BsDot />
           {genres && <span>{getGenres(genres)}</span>}
         </div>
         <p className={styles.banner__description}>

@@ -23,6 +23,7 @@
 
 .filter__results {
   position: absolute;
+  left: 0;
   /* top: 100%; */
   transform: translateX(-17rem);
   display: grid;
@@ -56,4 +57,10 @@
 
 .filter__genre:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 26.5625em) {
+  .filter__results {
+    transform: translateX(0);
+  }
 }

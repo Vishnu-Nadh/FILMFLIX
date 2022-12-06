@@ -1,0 +1,46 @@
+.menutoggle {
+  position: relative;
+  z-index: 5000;
+}
+
+.hamburger {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3rem;
+  height: 3rem;
+  z-index: 5;
+  transform: translateY(-3px);
+}
+
+.toggle {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.hamburger div {
+  position: relative;
+  width: 3rem;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--color-red);
+  margin-top: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle:checked + .hamburger .bottom-bun {
+  transform: translateY(-0.95rem) rotate(45deg);
+}
+
+.toggle:checked + .hamburger .top-bun {
+  transform: translateY(0.95rem) rotate(-45deg);
+}
+
+.toggle:checked + .hamburger .meat {
+  opacity: 0;
+}
+
+.toggle:checked + .hamburger + .nav__items {
+  transform: translateY(0);
+  opacity: 1;
+}

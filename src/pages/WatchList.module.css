@@ -5,4 +5,6 @@
   grid-template-columns: repeat(auto-fill, minmax(20rem, 25rem));
   row-gap: 3rem;
   column-gap: 2rem;
+  justify-content: center;
+  /* margin: 0 auto; */
 }
