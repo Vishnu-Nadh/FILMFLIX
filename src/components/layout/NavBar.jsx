@@ -48,6 +48,13 @@ const NavBar = () => {
           {/* <img src={logo} alt="logo" className={styles.nav__logo} /> */}
           <span className={styles.nav__logo}>FILMFLIX</span>
         </NavLink>
+        {!user && (
+          <div className={styles.login__lg_screen}>
+            <NavLink to="/auth" state={{ isSignIn: true }}>
+              <button className="btn-nav">Login</button>
+            </NavLink>
+          </div>
+        )}
         <input id="toggle" type="checkbox" className={styles.toggle}></input>
         <label htmlFor="toggle" className={styles.hamburger}>
           <div className={styles["top-bun"]}></div>

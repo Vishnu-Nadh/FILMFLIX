@@ -173,6 +173,10 @@
     visibility: visible; */
     display: block !important;
   }
+
+  .login__lg_screen {
+    display: none;
+  }
 }
 
 .menutoggle {
@@ -224,4 +228,10 @@
 .toggle:checked + .hamburger + div {
   transform: translateY(0);
   opacity: 1;
+}
+
+.login__lg_screen {
+  position: absolute;
+  right: 3rem;
+  top: 3rem;
 }

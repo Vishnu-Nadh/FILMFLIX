@@ -72,7 +72,7 @@ const Banner = () => {
         linear-gradient(to top, rgba(20,20,20,1) 0%, rgba(20,20,20,.6) 10%, rgba(20,20,20,0) 15%), 
         url(${bannerUrl})`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center top",
       }}
     >
       {(BannerError || error) && <Error errorMessage={error || BannerError} />}

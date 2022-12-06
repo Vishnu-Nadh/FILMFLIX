@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.6rem;
+  /* gap: 1.6rem; */
   background-image: radial-gradient(
       circle,
       rgba(20, 20, 20, 0.8) 0%,
@@ -21,15 +21,13 @@
 
 .welcome p {
   text-align: center;
-  padding: 1.6rem;
+  /* padding: 1.6rem; */
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  padding: 1.6rem;
-  /* align-items: center; */
-  /* justify-content: center; */
+  padding: 0 1.6rem;
 }
 
 @media (max-width: 26.5625em) {
